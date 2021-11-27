@@ -7,7 +7,7 @@ public class Kaart {
         if (type.trim().isEmpty()) {
             throw new IllegalArgumentException();
         }
-        if (type != "harten" || type != "schoppen" || type != "klaveren" || type != "ruiten") {
+        if (type != "harten" && type != "schoppen" && type != "klaveren" && type != "ruiten") {
             throw new IllegalArgumentException();
         }
         this.type = type;
@@ -27,19 +27,18 @@ public class Kaart {
         setType(type);
         setNummer(nummer);
     }
-    private int nummerGenereren()
+    private int nummerGenereren(int low ,int high)
     {
         Random r = new Random();
-        int low = 0;
-        int high = 5;
+
         int result = r.nextInt(high-low) + low;
         return result;
     }
     public Kaart(){
-        int nummer = nummerGenereren();
-        int type = nummerGenereren();
+        int nummer = nummerGenereren(1,5);
+        int type = nummerGenereren(0,15);
         String typex = "";
-        switch(type)
+        switch(nummer)
         {
             case 1-> typex = "schoppen";
             case 2 ->typex = "harten";
@@ -47,7 +46,7 @@ public class Kaart {
             case 4-> typex = "klaveren";
         }
         this.type = typex;
-        this.nummer = nummer;
+        this.nummer = type;
 
     }
 
